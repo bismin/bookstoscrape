@@ -1,0 +1,1 @@
+# Build a spider for books.toscrape.com(http://books.toscrape.com/) that extracts title, rating, price, stock and category from the URLs listed in following file (it can be stored locally alongside your spider).

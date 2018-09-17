@@ -11,8 +11,10 @@ class BookSpider(scrapy.Spider):
     	category=response.xpath('//div[@class="page-header action"]/h1/text()').extract_first()
     	jobs=response.xpath('//li[@class="col-xs-6 col-sm-4 col-md-3 col-lg-3"]/article[@class="product_pod"]')
     	for job in jobs:
-    			title=job.xpath('h3/a/text()').extract_first()
-    			rating=job.xpath('p/@class').extract_first()
-    			price=job.xpath('div[@class="product_price"]/p[@class="price_color"]/text()').extract_first()
+    			title=job.xpath('h3/a/text()').extract_first('')
+    			rating=job.xpath('p/@class').extract_first('')
+    			price=job.xpath('div[@class="product_price"]/p[@class="price_color"]/text()').extract_first('')
     			stock=job.xpath('div[@class="product_price"]/p[@class="instock availability"]/text()').extract()
+    			rating = rating.replace('star-rating ','')
+    			stock = stock[1].strip() if stock else ''
     			yield{'title':title,'rating':rating,'price':price,'stock':stock,'category':category}
